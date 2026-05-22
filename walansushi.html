@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walan Sushi — Art of Sushi · Nyali, Mombasa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Shippori+Mincho:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #f5f0e8;
+    --paper-dk: #ede7d9;
+    --ink:      #1c1a17;
+    --ink-mid:  #3a3530;
+    --ink-lt:   rgba(28,26,23,0.45);
+    --red:      #c0392b;
+    --red-lt:   #e74c3c;
+    --moss:     #4a6741;
+    --stone:    #8c8070;
+    --divider:  rgba(28,26,23,0.1);
+    --warm-wh:  #fdfaf5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── WASHI PAPER TEXTURE ──────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: .55;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    background-size: 400px 400px;
+  }
+
+  /* Ensure all content sits above texture */
+  nav, section, footer, .above { position: relative; z-index: 1; }
+
+  /* ── NAV ──────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245,240,232,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: .9rem;
+  }
+  /* Hanko-style red stamp circle */
+  .hanko {
+    width: 36px; height: 36px;
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hanko svg { width: 20px; height: 20px; }
+  .nav-wordmark {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .nav-wordmark strong {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.1rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .nav-wordmark span {
+    font-family: 'DM Mono', monospace;
+    font-size: .55rem; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--stone); margin-top: 1px;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--ink-lt); text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+    background: var(--ink); color: var(--paper);
+    border: none; cursor: pointer;
+    padding: .55rem 1.4rem; text-decoration: none; display: inline-block;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--red); }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    background: var(--paper);
+    display: flex; align-items: center;
+    padding-top: 64px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Sakura branch SVG watermark */
+  .sakura-bg {
+    position: absolute; right: -60px; top: 0; bottom: 0;
+    width: 55%; pointer-events: none; opacity: .07;
+  }
+
+  /* Vertical red stripe — Japanese design element */
+  .hero-stripe {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 5px; background: var(--red);
+  }
+
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2.5rem 0 5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; width: 100%;
+  }
+  .hero-text {}
+  .hero-kana {
+    font-family: 'Shippori Mincho', serif;
+    font-size: .75rem; letter-spacing: .4em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-kana::before {
+    content: ''; display: block;
+    width: 30px; height: 1px; background: var(--red);
+  }
+  .hero-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 800; line-height: .95;
+    color: var(--ink); letter-spacing: -.01em;
+  }
+  .hero-title .italic-line {
+    font-weight: 300; font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--stone); display: block; margin-top: .3rem;
+  }
+  .hero-title .red-word { color: var(--red); }
+  .hero-sub {
+    font-size: 1.2rem; line-height: 1.8; font-style: italic;
+    color: var(--ink-lt); margin-top: 2rem;
+    max-width: 420px;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-dark {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+    background: var(--ink); color: var(--paper);
+    border: none; cursor: pointer; padding: .85rem 2rem;
+    text-decoration: none; display: inline-block; transition: background .2s;
+  }
+  .btn-dark:hover { background: var(--red); }
+  .btn-ghost {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--divider); cursor: pointer;
+    padding: .85rem 2rem; text-decoration: none; display: inline-block;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  /* Hero right — info cards */
+  .hero-cards { display: flex; flex-direction: column; gap: 1px; }
+  .hero-card {
+    background: var(--warm-wh);
+    border: 1px solid var(--divider);
+    padding: 1.8rem 2rem;
+    display: flex; gap: 1.5rem; align-items: flex-start;
+  }
+  .hero-card-icon {
+    font-size: 1.6rem; flex-shrink: 0; margin-top: .1rem;
+  }
+  .hero-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--red); display: block; margin-bottom: .4rem;
+  }
+  .hero-card-val {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.05rem; color: var(--ink); font-weight: 600;
+    line-height: 1.5;
+  }
+  .hero-card-val a { color: inherit; text-decoration: none; }
+  .hero-card-val a:hover { color: var(--red); }
+  .hero-card-sub {
+    font-size: .88rem; color: var(--ink-lt); margin-top: .2rem;
+    font-style: italic;
+  }
+
+  /* ── DIVIDER LINE ─────────────────────────────────────── */
+  .ink-line {
+    max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    color: var(--stone);
+  }
+  .ink-line::before, .ink-line::after {
+    content: ''; flex: 1; height: 1px; background: var(--divider);
+  }
+  .ink-line span {
+    font-family: 'DM Mono', monospace;
+    font-size: .58rem; letter-spacing: .3em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── ABOUT ────────────────────────────────────────────── */
+  #about {
+    padding: 7rem 0;
+    background: var(--warm-wh);
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .about-wrap {
+    max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 6rem;
+    align-items: start;
+  }
+  .about-left {}
+  .sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .62rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1.2rem; display: block;
+  }
+  .sec-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.1; color: var(--ink);
+  }
+  .about-right {}
+  .about-right p {
+    font-size: 1.25rem; line-height: 1.9; color: var(--ink-mid);
+    margin-bottom: 1.5rem;
+  }
+  .about-right p:last-child { margin-bottom: 0; }
+  .about-right em { color: var(--red); font-style: normal; }
+  .pillars {
+    display: flex; gap: 2rem; margin-top: 2.5rem; flex-wrap: wrap;
+  }
+  .pillar {
+    display: flex; flex-direction: column; align-items: center;
+    gap: .5rem; flex: 1; min-width: 100px;
+  }
+  .pillar-circle {
+    width: 56px; height: 56px; border: 1px solid var(--red);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 1.4rem;
+  }
+  .pillar span {
+    font-family: 'DM Mono', monospace;
+    font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--stone); text-align: center;
+  }
+
+  /* ── MENU ─────────────────────────────────────────────── */
+  #menu {
+    padding: 7rem 0;
+    background: var(--paper);
+  }
+  .menu-wrap { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+  .menu-head {
+    text-align: center; margin-bottom: 4rem;
+  }
+  .menu-head p {
+    font-size: 1.1rem; color: var(--ink-lt); font-style: italic;
+    margin-top: .8rem;
+  }
+
+  /* Tabs */
+  .menu-tabs {
+    display: flex; justify-content: center; gap: 0;
+    margin-bottom: 4rem; border: 1px solid var(--divider);
+    max-width: 700px; margin-left: auto; margin-right: auto;
+    margin-bottom: 4rem;
+  }
+  .tab-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+    padding: .75rem 1.4rem; cursor: pointer; flex: 1;
+    background: transparent; color: var(--ink-lt);
+    border: none; border-right: 1px solid var(--divider);
+    transition: all .2s;
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn:hover { color: var(--ink); background: var(--paper-dk); }
+  .tab-btn.active { background: var(--ink); color: var(--paper); }
+
+  /* Panels */
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+
+  /* Category heading */
+  .mcat {
+    margin-bottom: 3.5rem;
+  }
+  .mcat-head {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: .8rem;
+  }
+  .mcat-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.6rem; font-weight: 700; color: var(--ink);
+    letter-spacing: .04em;
+  }
+  .mcat-desc {
+    font-size: 1rem; color: var(--ink-lt); font-style: italic;
+    margin-bottom: 1.5rem; line-height: 1.7;
+    border-left: 2px solid var(--red);
+    padding-left: 1rem; max-width: 600px;
+  }
+  /* Ruling line under category */
+  .mcat-rule {
+    height: 1px; background: var(--divider); margin-bottom: 1.5rem;
+  }
+
+  /* Pricing table */
+  .price-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px; background: var(--divider);
+    border: 1px solid var(--divider);
+    margin-bottom: 1rem;
+  }
+  .price-row {
+    background: var(--warm-wh);
+    padding: 1.1rem 1.4rem;
+    display: flex; align-items: baseline;
+    justify-content: space-between; gap: 1rem;
+    transition: background .15s;
+  }
+  .price-row:hover { background: var(--paper-dk); }
+  .price-row-label {
+    font-size: .95rem; color: var(--ink);
+  }
+  .price-row-label .piece-count {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; color: var(--stone); margin-left: .4rem;
+    letter-spacing: .05em;
+  }
+  .price-row-val {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1rem; color: var(--ink); font-weight: 600;
+    white-space: nowrap;
+  }
+  .price-row-val .ksh {
+    font-family: 'DM Mono', monospace;
+    font-size: .6rem; color: var(--stone); margin-right: 2px;
+    font-weight: 400;
+  }
+
+  /* Special roll card */
+  .special-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  .special-card {
+    background: var(--warm-wh);
+    border: 1px solid var(--divider);
+    padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .special-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--red);
+  }
+  .special-card-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--ink);
+    margin-bottom: .6rem;
+  }
+  .special-card-desc {
+    font-size: 1rem; color: var(--ink-lt); font-style: italic;
+    line-height: 1.7; margin-bottom: 1.5rem;
+  }
+  /* Ingredient tags */
+  .ingredients {
+    display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.5rem;
+  }
+  .ing-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--moss); border: 1px solid rgba(74,103,65,.3);
+    padding: .2rem .6rem;
+  }
+  .special-prices {
+    display: flex; flex-direction: column; gap: .5rem;
+  }
+  .special-price-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--divider); padding-bottom: .5rem;
+  }
+  .special-price-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .spr-pc {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; letter-spacing: .1em; color: var(--stone);
+  }
+  .spr-price {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.05rem; font-weight: 600; color: var(--ink);
+  }
+  .spr-price .ksh {
+    font-family: 'DM Mono', monospace; font-size: .58rem;
+    color: var(--stone); font-weight: 400; margin-right: 1px;
+  }
+
+  /* ── HOURS ────────────────────────────────────────────── */
+  #hours {
+    background: var(--ink);
+    padding: 5rem 0;
+    position: relative; overflow: hidden;
+  }
+  #hours::before {
+    content: ''; position: absolute;
+    right: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--red);
+  }
+  .hours-wrap {
+    max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .hours-text {}
+  .hours-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .62rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1.2rem; display: block;
+  }
+  .hours-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+    color: var(--paper); line-height: 1.1;
+  }
+  .hours-sub {
+    font-size: 1.1rem; color: rgba(245,240,232,.45);
+    margin-top: 1.2rem; font-style: italic; line-height: 1.7;
+  }
+  .hours-table { margin-top: 2rem; }
+  .hours-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(245,240,232,.08);
+  }
+  .hours-row:first-child { border-top: 1px solid rgba(245,240,232,.08); }
+  .hours-day {
+    font-family: 'DM Mono', monospace;
+    font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+    color: rgba(245,240,232,.5);
+  }
+  .hours-time {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1rem; color: var(--paper); font-weight: 500;
+  }
+  .hours-closed {
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem; letter-spacing: .1em;
+    color: var(--red);
+  }
+  /* Right col — order card */
+  .order-card {
+    background: rgba(245,240,232,.05);
+    border: 1px solid rgba(245,240,232,.1);
+    padding: 3rem;
+  }
+  .order-card-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.8rem; color: var(--paper); font-weight: 700;
+    margin-bottom: .8rem;
+  }
+  .order-card-sub {
+    font-size: 1rem; color: rgba(245,240,232,.45);
+    font-style: italic; margin-bottom: 2rem; line-height: 1.7;
+  }
+  .order-card a.btn-light {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+    background: var(--paper); color: var(--ink);
+    border: none; cursor: pointer; padding: .9rem 2rem;
+    text-decoration: none; display: inline-block; transition: background .2s;
+    margin-bottom: .8rem; display: block; text-align: center;
+  }
+  .order-card a.btn-light:hover { background: var(--red); color: #fff; }
+  .order-card a.btn-red {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+    background: var(--red); color: #fff;
+    border: none; cursor: pointer; padding: .9rem 2rem;
+    text-decoration: none; display: block; text-align: center;
+    transition: background .2s;
+  }
+  .order-card a.btn-red:hover { background: var(--red-lt); }
+
+  /* ── FIND US ──────────────────────────────────────────── */
+  #find {
+    padding: 7rem 0;
+    background: var(--warm-wh);
+    border-top: 1px solid var(--divider);
+  }
+  .find-wrap {
+    max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;
+  }
+  .find-card {
+    padding: 2.5rem; border: 1px solid var(--divider);
+    position: relative;
+  }
+  .find-card::after {
+    content: ''; position: absolute;
+    top: -1px; left: 2rem; width: 40px; height: 2px;
+    background: var(--red);
+  }
+  .find-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .6rem; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 1.2rem; display: block;
+    margin-top: .5rem;
+  }
+  .find-card h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem;
+  }
+  .find-card p {
+    font-size: 1.05rem; line-height: 1.9; color: var(--ink-lt);
+  }
+  .find-card a { color: var(--ink-mid); text-decoration: none; transition: color .2s; }
+  .find-card a:hover { color: var(--red); }
+  .wa-link {
+    display: inline-flex; align-items: center; gap: .6rem;
+    margin-top: 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+    background: #25D366; color: #fff; padding: .6rem 1.2rem;
+    text-decoration: none; transition: background .2s;
+  }
+  .wa-link:hover { background: #128C7E; color: #fff !important; }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  footer {
+    background: var(--ink);
+    padding: 3rem 0 0;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2.5rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  .footer-brand strong {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.4rem; color: var(--paper); font-weight: 700;
+    letter-spacing: .08em; display: block;
+  }
+  .footer-brand span {
+    font-family: 'DM Mono', monospace;
+    font-size: .58rem; letter-spacing: .3em; text-transform: uppercase;
+    color: rgba(245,240,232,.3);
+  }
+  .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .footer-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(245,240,232,.3); text-decoration: none; transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--red); }
+  .footer-copy {
+    border-top: 1px solid rgba(245,240,232,.06);
+    text-align: center; padding: 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+    color: rgba(245,240,232,.15);
+  }
+
+  /* ── ANIMATIONS ───────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-kana  { animation: fadeUp .7s .1s ease both; }
+  .hero-title { animation: fadeUp .7s .2s ease both; }
+  .hero-sub   { animation: fadeUp .7s .35s ease both; }
+  .hero-actions { animation: fadeUp .7s .45s ease both; }
+  .hero-cards { animation: fadeUp .7s .25s ease both; }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 3rem; }
+    .hero-stripe { display: none; }
+    .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .hours-wrap { grid-template-columns: 1fr; gap: 3rem; }
+    .find-wrap { grid-template-columns: 1fr; }
+    .special-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .sakura-bg { display: none; }
+    .menu-tabs { flex-wrap: wrap; }
+    .tab-btn { flex: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="hanko">
+        <!-- Sushi icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="14" width="18" height="7" rx="1" fill="#c0392b" opacity=".15"/>
+          <rect x="3" y="14" width="18" height="7" rx="1" stroke="#c0392b" stroke-width="1.2"/>
+          <ellipse cx="8" cy="14" rx="3" ry="5" fill="#c0392b" opacity=".7"/>
+          <ellipse cx="16" cy="14" rx="3" ry="5" fill="#c0392b" opacity=".5"/>
+          <rect x="5" y="16" width="4" height="2" rx=".5" fill="#c0392b" opacity=".3"/>
+        </svg>
+      </div>
+      <div class="nav-wordmark">
+        <strong>Walan Sushi</strong>
+        <span>Art of Sushi</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#find">Find Us</a></li>
+    </ul>
+    <a class="nav-cta" href="tel:+254796558336">Reserve a Table</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-stripe"></div>
+
+  <!-- Sakura watermark SVG -->
+  <svg class="sakura-bg" viewBox="0 0 500 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M250 650 C250 400 180 300 150 200 C120 100 200 50 250 80 C300 50 380 100 350 200 C320 300 250 400 250 650Z" stroke="#1c1a17" stroke-width="2" fill="none"/>
+    <path d="M250 400 C200 360 140 340 100 300" stroke="#1c1a17" stroke-width="1.5" fill="none"/>
+    <path d="M250 380 C310 350 370 320 400 280" stroke="#1c1a17" stroke-width="1.5" fill="none"/>
+    <path d="M250 460 C190 430 130 410 90 380" stroke="#1c1a17" stroke-width="1.5" fill="none"/>
+    <path d="M250 440 C320 420 380 400 420 360" stroke="#1c1a17" stroke-width="1.5" fill="none"/>
+    <!-- Blossom clusters -->
+    <circle cx="100" cy="295" r="6" fill="#c0392b" opacity=".6"/>
+    <circle cx="88" cy="285" r="4" fill="#c0392b" opacity=".4"/>
+    <circle cx="112" cy="285" r="5" fill="#c0392b" opacity=".5"/>
+    <circle cx="400" cy="275" r="6" fill="#c0392b" opacity=".5"/>
+    <circle cx="415" cy="265" r="4" fill="#c0392b" opacity=".4"/>
+    <circle cx="90" cy="375" r="5" fill="#c0392b" opacity=".4"/>
+    <circle cx="420" cy="355" r="6" fill="#c0392b" opacity=".5"/>
+    <circle cx="408" cy="344" r="4" fill="#c0392b" opacity=".3"/>
+    <circle cx="150" cy="198" r="7" fill="#c0392b" opacity=".5"/>
+    <circle cx="138" cy="188" r="4" fill="#c0392b" opacity=".4"/>
+    <circle cx="350" cy="195" r="6" fill="#c0392b" opacity=".5"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-kana">Art of Sushi · Nyali, Mombasa</div>
+      <h1 class="hero-title">
+        Walan<br>
+        <span class="red-word">Sushi</span>
+        <span class="italic-line">Fresh. Crafted. Loved.</span>
+      </h1>
+      <p class="hero-sub">Fresh, flavorful sushi made with skill and heart — served right here in Nyali, Mombasa. Takeaway &amp; delivery available.</p>
+      <div class="hero-actions">
+        <a class="btn-dark" href="#menu" onclick="event.preventDefault();document.getElementById('menu').scrollIntoView({behavior:'smooth'});">View Menu</a>
+        <a class="btn-ghost" href="tel:+254796558336">Reserve a Table</a>
+      </div>
+    </div>
+
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-icon">📍</div>
+        <div>
+          <span class="hero-card-label">Location</span>
+          <div class="hero-card-val">Nyali, Mombasa</div>
+          <div class="hero-card-sub">Takeaway &amp; Delivery</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">📞</div>
+        <div>
+          <span class="hero-card-label">Call or Order</span>
+          <div class="hero-card-val"><a href="tel:+254796558336">+254 796 558 336</a></div>
+          <div class="hero-card-sub">Call to reserve or order</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🕐</div>
+        <div>
+          <span class="hero-card-label">Opening Hours</span>
+          <div class="hero-card-val">Tue–Thu: 12:30–9:30pm</div>
+          <div class="hero-card-sub">Fri–Sun: 2:30–10:00pm · Closed Mon</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">📸</div>
+        <div>
+          <span class="hero-card-label">Instagram</span>
+          <div class="hero-card-val">
+            <a href="https://instagram.com/walansushi" target="_blank">@walansushi</a>
+          </div>
+          <div class="hero-card-sub">Quality · Freshness · Passion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-left">
+      <span class="sec-label">Our Philosophy</span>
+      <h2 class="sec-title">Sushi as an Art Form</h2>
+    </div>
+    <div class="about-right">
+      <p>At Walan Sushi, every roll is a composition — crafted with <em>fresh fish</em>, perfectly seasoned sushi rice, and ingredients chosen for quality, not compromise. We believe sushi should be both <em>beautiful and bold</em>.</p>
+      <p>Based in Nyali, Mombasa, we bring the precision and elegance of Japanese sushi culture to the Kenyan coast — with a warm, local heart. Whether you dine in, take away, or order delivery, every piece is made the same way: with care.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-circle">🐟</div>
+          <span>Quality</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-circle">✨</div>
+          <span>Freshness</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-circle">🎋</div>
+          <span>Passion</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-circle">🛵</div>
+          <span>Delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MENU ══════════════════════════════════════════════════ -->
+<section id="menu">
+  <div class="menu-wrap">
+    <div class="menu-head">
+      <span class="sec-label" style="display:block;text-align:center;">What We Serve</span>
+      <h2 class="sec-title">The Menu</h2>
+      <p>All prices in Kenya Shillings. Available as takeaway or delivery.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="showTab('maki',this)">Maki Rolls</button>
+      <button class="tab-btn" onclick="showTab('uramaki',this)">Uramaki</button>
+      <button class="tab-btn" onclick="showTab('hosomaki',this)">Hosomaki</button>
+      <button class="tab-btn" onclick="showTab('nigiri',this)">Nigiri</button>
+      <button class="tab-btn" onclick="showTab('specials',this)">Special Rolls</button>
+    </div>
+
+    <!-- ── MAKI ROLLS ── -->
+    <div class="menu-panel active" id="panel-maki">
+      <div class="mcat">
+        <div class="mcat-head">
+          <span class="mcat-name">Maki Rolls</span>
+        </div>
+        <p class="mcat-desc">Classic seaweed-wrapped sushi rolls filled with fresh ingredients and sliced into bite-size pieces. Made with nori on the outside and sushi rice inside. Simple, traditional, and perfect for all sushi lovers.</p>
+        <div class="mcat-rule"></div>
+
+        <!-- Chicken -->
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Chicken</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces<span class="piece-count">4pc</span></span><span class="price-row-val"><span class="ksh">KSh </span>550</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces<span class="piece-count">8pc</span></span><span class="price-row-val"><span class="ksh">KSh </span>850</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces<span class="piece-count">12pc</span></span><span class="price-row-val"><span class="ksh">KSh </span>1,200</span></div>
+          </div>
+        </div>
+        <!-- Salmon -->
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Salmon</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>730</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,150</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,550</span></div>
+          </div>
+        </div>
+        <!-- Tuna -->
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Tuna</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>650</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>900</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,300</span></div>
+          </div>
+        </div>
+        <!-- Shrimp -->
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Shrimp</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>700</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,000</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,400</span></div>
+          </div>
+        </div>
+        <!-- Veg -->
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Veg</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>450</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>750</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,000</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── URAMAKI ── -->
+    <div class="menu-panel" id="panel-uramaki">
+      <div class="mcat">
+        <div class="mcat-head"><span class="mcat-name">Uramaki</span></div>
+        <p class="mcat-desc">Modern-style rolls with sushi rice on the outside and nori on the inside, wrapped around flavorful fillings. Often finished with sesame seeds, or special sauces. Colorful, tasty, and beautifully presented.</p>
+        <div class="mcat-rule"></div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Chicken</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>570</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>870</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,220</span></div>
+          </div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Salmon</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>760</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,180</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,650</span></div>
+          </div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Tuna</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>670</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>930</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,400</span></div>
+          </div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Shrimp</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>770</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,100</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,550</span></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Veg</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>470</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>800</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,050</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HOSOMAKI ── -->
+    <div class="menu-panel" id="panel-hosomaki">
+      <div class="mcat">
+        <div class="mcat-head"><span class="mcat-name">Hosomaki</span></div>
+        <p class="mcat-desc">Thin, delicate rolls made with a single filling and wrapped in nori. Light, clean, and perfect as a starter or side. Minimal, elegant, and easy to enjoy.</p>
+        <div class="mcat-rule"></div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Salmon</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>670</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,050</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,450</span></div>
+          </div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Tuna</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>550</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>900</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,250</span></div>
+          </div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Shrimp</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>600</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>950</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,350</span></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Veg</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>400</span></div>
+            <div class="price-row"><span class="price-row-label">8 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>700</span></div>
+            <div class="price-row"><span class="price-row-label">12 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>950</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NIGIRI ── -->
+    <div class="menu-panel" id="panel-nigiri">
+      <div class="mcat">
+        <div class="mcat-head"><span class="mcat-name">Nigiri</span></div>
+        <p class="mcat-desc">Hand-pressed sushi rice topped with a slice of fresh fish or seafood. Served as pairs and crafted for perfect balance and freshness. Traditional, simple, and full of flavor.</p>
+        <div class="mcat-rule"></div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Salmon</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">2 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>600</span></div>
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,000</span></div>
+            <div class="price-row"><span class="price-row-label">6 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,400</span></div>
+          </div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Tuna</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">2 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>500</span></div>
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>850</span></div>
+            <div class="price-row"><span class="price-row-label">6 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,100</span></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:.5rem;">Shrimp</div>
+          <div class="price-table">
+            <div class="price-row"><span class="price-row-label">2 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>550</span></div>
+            <div class="price-row"><span class="price-row-label">4 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>950</span></div>
+            <div class="price-row"><span class="price-row-label">6 pieces</span><span class="price-row-val"><span class="ksh">KSh </span>1,300</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SPECIAL ROLLS ── -->
+    <div class="menu-panel" id="panel-specials">
+      <div class="mcat">
+        <div class="mcat-head"><span class="mcat-name">Special Rolls</span></div>
+        <p class="mcat-desc">Our signature uramaki creations — layered with premium ingredients, finished with spicy mayo. The best of what we do.</p>
+        <div class="mcat-rule"></div>
+        <div class="special-grid">
+          <div class="special-card">
+            <div class="special-card-name">Ebi Netsu Roll</div>
+            <div class="special-card-desc">Uramaki roll with crabstick, cucumber, and mango, topped with shrimp and finished with spicy mayo.</div>
+            <div class="ingredients">
+              <span class="ing-tag">Shrimp</span>
+              <span class="ing-tag">Crabstick</span>
+              <span class="ing-tag">Mango</span>
+              <span class="ing-tag">Cucumber</span>
+              <span class="ing-tag">Sushi Rice</span>
+              <span class="ing-tag">Nori</span>
+              <span class="ing-tag">Spicy Mayo</span>
+            </div>
+            <div class="special-prices">
+              <div class="special-price-row">
+                <span class="spr-pc">4 pieces</span>
+                <span class="spr-price"><span class="ksh">KSh </span>800</span>
+              </div>
+              <div class="special-price-row">
+                <span class="spr-pc">8 pieces</span>
+                <span class="spr-price"><span class="ksh">KSh </span>1,450</span>
+              </div>
+              <div class="special-price-row">
+                <span class="spr-pc">12 pieces</span>
+                <span class="spr-price"><span class="ksh">KSh </span>2,200</span>
+              </div>
+            </div>
+          </div>
+          <div class="special-card">
+            <div class="special-card-name">Sake Kani Roll</div>
+            <div class="special-card-desc">Uramaki roll with crabstick, cucumber, and avocado, topped with fresh salmon and served with spicy mayo.</div>
+            <div class="ingredients">
+              <span class="ing-tag">Fresh Salmon</span>
+              <span class="ing-tag">Crabstick</span>
+              <span class="ing-tag">Avocado</span>
+              <span class="ing-tag">Cucumber</span>
+              <span class="ing-tag">Sushi Rice</span>
+              <span class="ing-tag">Nori</span>
+              <span class="ing-tag">Spicy Mayo</span>
+            </div>
+            <div class="special-prices">
+              <div class="special-price-row">
+                <span class="spr-pc">4 pieces</span>
+                <span class="spr-price"><span class="ksh">KSh </span>850</span>
+              </div>
+              <div class="special-price-row">
+                <span class="spr-pc">8 pieces</span>
+                <span class="spr-price"><span class="ksh">KSh </span>1,500</span>
+              </div>
+              <div class="special-price-row">
+                <span class="spr-pc">12 pieces</span>
+                <span class="spr-price"><span class="ksh">KSh </span>2,300</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /menu-wrap -->
+</section>
+
+<!-- ═══ HOURS ═════════════════════════════════════════════════ -->
+<section id="hours">
+  <div class="hours-wrap">
+    <div class="hours-text">
+      <span class="hours-label">When We're Open</span>
+      <h2 class="hours-title">Opening Hours</h2>
+      <p class="hours-sub">Fresh sushi, good vibes, and a reason to come back again.</p>
+      <div class="hours-table">
+        <div class="hours-row">
+          <span class="hours-day">Monday</span>
+          <span class="hours-closed">Closed</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Tue – Thu</span>
+          <span class="hours-time">12:30 PM – 9:30 PM</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Fri – Sun</span>
+          <span class="hours-time">2:30 PM – 10:00 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="order-card">
+      <div class="order-card-title">Order Now</div>
+      <div class="order-card-sub">Call us to place an order for takeaway or delivery anywhere in Nyali, Mombasa.</div>
+      <a class="btn-light" href="tel:+254796558336">📞 Call: +254 796 558 336</a>
+      <a class="btn-red" href="https://wa.me/254796558336" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FIND US ═══════════════════════════════════════════════ -->
+<section id="find">
+  <div class="find-wrap">
+    <div class="find-card">
+      <span class="find-card-label">Location</span>
+      <h3>Nyali, Mombasa</h3>
+      <p>
+        Nyali, Mombasa<br>
+        Kenya<br><br>
+        Takeaway &amp; Delivery available.<br>
+        <a href="https://maps.google.com/?q=Nyali+Mombasa" target="_blank" style="color:var(--red);">Get Directions →</a>
+      </p>
+    </div>
+    <div class="find-card">
+      <span class="find-card-label">Call or WhatsApp</span>
+      <h3>Get in Touch</h3>
+      <p>
+        <a href="tel:+254796558336">📞 +254 796 558 336</a><br><br>
+        Available during opening hours.<br>
+        Call to order, reserve, or enquire.
+      </p>
+      <a class="wa-link" href="https://wa.me/254796558336" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+    <div class="find-card">
+      <span class="find-card-label">Follow Us</span>
+      <h3>Stay Connected</h3>
+      <p>
+        📸 <a href="https://instagram.com/walansushi" target="_blank">@walansushi</a> on Instagram<br><br>
+        Follow us for new rolls, specials, and behind-the-scenes from our kitchen.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>Walan Sushi</strong>
+      <span>Art of Sushi · Nyali, Mombasa</span>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#hours">Hours</a>
+      <a href="#find">Find Us</a>
+      <a href="tel:+254796558336">+254 796 558 336</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2024 Walan Sushi · Quality · Freshness · Passion</div>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+    document.getElementById('menu').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 40 ? '0 2px 20px rgba(28,26,23,.08)' : 'none';
+  });
+</script>
+</body>
+</html>
